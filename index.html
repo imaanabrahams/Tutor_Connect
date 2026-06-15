@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TutorConnect</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo">🎓 TutorConnect</div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#tutors">Tutors</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button id="darkModeBtn">🌙</button>
+    
+</nav>
+
+<section id="home" class="hero">
+
+    <div class="hero-text">
+        <h1>Learn Smarter. Achieve More.</h1>
+
+        <p>
+            Connect with qualified tutors and boost your academic success.
+        </p>
+
+        <button>Find a Tutor</button>
+    </div>
+
+    <div class="hero-image">
+        <img src="assets/hero-image.png" alt="Student Learning">
+    </div>
+
+</section>
+
+<section class="stats">
+
+    <div class="card">
+        <h2 id="tutorsCount">0</h2>
+        <p>Expert Tutors</p>
+    </div>
+
+    <div class="card">
+        <h2 id="studentsCount">0</h2>
+        <p>Students Helped</p>
+    </div>
+
+    <div class="card">
+        <h2>95%</h2>
+        <p>Pass Rate</p>
+    </div>
+
+</section>
+
+<section id="about">
+
+    <h2>About Us</h2>
+
+    <p>
+        TutorConnect helps students find reliable tutors
+        for academic support and exam preparation.
+    </p>
+
+</section>
+
+<section id="services">
+
+    <h2>Our Services</h2>
+
+    <div class="service-grid">
+
+        <div class="service-card">
+            <h3>📚 Mathematics</h3>
+            <p>Grade 8 to University</p>
+        </div>
+
+        <div class="service-card">
+            <h3>🧪 Science</h3>
+            <p>Physics & Chemistry</p>
+        </div>
+
+        <div class="service-card">
+            <h3>💻 Programming</h3>
+            <p>HTML, CSS, JavaScript</p>
+        </div>
+
+        <div class="service-card">
+            <h3>📖 Languages</h3>
+            <p>English & Afrikaans</p>
+        </div>
+
+        <div class="service-card">
+          <h3>📝 Exam Prep</h3>
+          <p>Get ready for your exams with our expert tutors.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>🎨 Art & Design</h3>
+          <p>Visual arts and design principles.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="tutors">
+
+    <h2>Find Tutors :</h2>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search Tutor..."
+    >
+
+    <div id="tutorContainer"></div>
+
+</section>
+
+<section id="contact">
+
+    <h2>Contact Us</h2>
+
+    <form id="contactForm">
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Your Name..."
+        >
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email Address..."
+        >
+
+        <textarea
+            id="message"
+            placeholder="Message..."
+        ></textarea>
+
+        <button type="submit">Send Message</button>
+
+    </form>
+
+    <p id="feedback"></p>
+
+</section>
+
+<footer>
+    <p>© 2026 TutorConnect</p>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
