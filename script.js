@@ -198,5 +198,4 @@ if (tutorsCount && studentsCount) {
         }
 
     }, 20);
-
 }
