@@ -1,165 +1,202 @@
+// ======================
+// TUTOR DATA
+// ======================
+
 const tutors = [
-
-{
-    name:"Sarah Johnson",
-    subject:"Mathematics",
-    rating:"⭐⭐⭐⭐⭐"
-},
-
-{
-    name:"David Smith",
-    subject:"Programming",
-    rating:"⭐⭐⭐⭐"
-},
-
-{
-    name:"Fatima Adams",
-    subject:"English",
-    rating:"⭐⭐⭐⭐⭐"
-}
-
+    {
+        name: "Sarah Johnson",
+        subject: "Mathematics",
+        rating: "⭐⭐⭐⭐⭐"
+    },
+    {
+        name: "David Smith",
+        subject: "Programming",
+        rating: "⭐⭐⭐⭐"
+    },
+    {
+        name: "Fatima Adams",
+        subject: "English",
+        rating: "⭐⭐⭐⭐⭐"
+    }
 ];
 
-const container =
-document.getElementById("tutorContainer");
+// ======================
+// DISPLAY TUTORS
+// ======================
 
-function displayTutors(data){
+const tutorContainer = document.getElementById("tutorContainer");
 
-    container.innerHTML="";
+function displayTutors(data) {
 
-    data.forEach(tutor=>{
+    if (!tutorContainer) return;
 
-        container.innerHTML += `
-        <div class="tutor-card">
-            <h3>${tutor.name}</h3>
-            <p>${tutor.subject}</p>
-            <p>${tutor.rating}</p>
-        </div>
+    tutorContainer.innerHTML = "";
+
+    data.forEach(tutor => {
+        tutorContainer.innerHTML += `
+            <div class="card">
+                <h3>${tutor.name}</h3>
+                <p>${tutor.subject}</p>
+                <p>${tutor.rating}</p>
+            </div>
         `;
+``    });
+}
+
+if (tutorContainer) {
+    displayTutors(tutors);
+}
+
+// ======================
+// SEARCH
+// ======================
+
+const searchInput = document.getElementById("searchInput");
+
+if (searchInput) {
+
+    searchInput.addEventListener("keyup", () => {
+
+        const search =
+            searchInput.value.toLowerCase();
+
+        const filtered = tutors.filter(tutor =>
+            tutor.name.toLowerCase().includes(search) ||
+            tutor.subject.toLowerCase().includes(search)
+        );
+
+        displayTutors(filtered);
+
     });
 
 }
 
-displayTutors(tutors);
+// ======================
+// CONTACT FORM
+// ======================
 
-document
-.getElementById("searchInput")
-.addEventListener("keyup",()=>{
+const contactForm = document.getElementById("contactForm");
 
-const search =
-document
-.getElementById("searchInput")
-.value
-.toLowerCase();
+if (contactForm) {
 
-const filtered =
-tutors.filter(tutor =>
-tutor.name.toLowerCase().includes(search)
-||
-tutor.subject.toLowerCase().includes(search)
-);
+    contactForm.addEventListener("submit", (e) => {
 
-displayTutors(filtered);
+        e.preventDefault();
 
-});
+        const name =
+            document.getElementById("name").value.trim();
 
-document
-.getElementById("contactForm")
-.addEventListener("submit",(e)=>{
+        const email =
+            document.getElementById("email").value.trim();
 
-e.preventDefault();
+        const message =
+            document.getElementById("message").value.trim();
 
-const name =
-document.getElementById("name").value;
+        const feedback =
+            document.getElementById("feedback");
 
-const email =
-document.getElementById("email").value;
+        if (!name || !email || !message) {
 
-const message =
-document.getElementById("message").value;
+            feedback.innerText =
+                "Please complete all fields.";
 
-if(
-name === "" ||
-email === "" ||
-message === ""
-){
+            feedback.style.color = "red";
 
-document.getElementById("feedback")
-.innerText =
-"Please complete all fields.";
+            return;
+        }
 
-return;
+        feedback.innerText =
+            "Message sent successfully!";
+
+        feedback.style.color = "green";
+
+        contactForm.reset();
+
+    });
 
 }
 
-document.getElementById("feedback")
-.innerText =
-"Message sent successfully!";
+// ======================
+// DARK MODE
+// ======================
 
-});
-
-document
-.getElementById("darkModeBtn")
-.addEventListener("click",()=>{
-
-document.body.classList.toggle("dark");
-
-});
-
-const darkBtn = document.getElementById("darkModeBtn");
-
-darkBtn.addEventListener("click", () => {
-
-    document.body.classList.toggle("dark");
-
-    if (document.body.classList.contains("dark")) {
-        darkBtn.textContent = "☀️";
-    } else {
-        darkBtn.textContent = "🌙";
-    }
-
-});
-
-const darkBtn = document.getElementById("darkModeBtn");
+const darkBtn =
+    document.getElementById("darkModeBtn");
 
 if (localStorage.getItem("theme") === "dark") {
+
     document.body.classList.add("dark");
-    darkBtn.textContent = "☀️";
+
+    if (darkBtn) {
+        darkBtn.textContent = "☀️";
+    }
+
 }
 
-darkBtn.addEventListener("click", () => {
+if (darkBtn) {
 
-    document.body.classList.toggle("dark");
+    darkBtn.addEventListener("click", () => {
 
-    if (document.body.classList.contains("dark")) {
-        darkBtn.textContent = "☀️";
-        localStorage.setItem("theme", "dark");
-    } else {
-        darkBtn.textContent = "🌙";
-        localStorage.setItem("theme", "light");
-    }
+        document.body.classList.toggle("dark");
 
-});
+        if (
+            document.body.classList.contains("dark")
+        ) {
 
+            darkBtn.textContent = "☀️";
 
+            localStorage.setItem(
+                "theme",
+                "dark"
+            );
 
-let tutorCount = 0;
-let studentCount = 0;
+        } else {
 
-const tutorInterval = setInterval(() => {
+            darkBtn.textContent = "🌙";
 
-    tutorCount += 10;
-    studentCount += 200;
+            localStorage.setItem(
+                "theme",
+                "light"
+            );
 
-    document.getElementById("tutorsCount").innerText = tutorCount;
-    document.getElementById("studentsCount").innerText = studentCount;
+        }
 
-    if(tutorCount >= 500){
+    });
 
-        clearInterval(tutorInterval);
+}
 
-        document.getElementById("tutorsCount").innerText = "500+";
-        document.getElementById("studentsCount").innerText = "10000+";
-    }
+// ======================
+// COUNTERS
+// ======================
 
-},20);
+const tutorsCount =
+    document.getElementById("tutorsCount");
+
+const studentsCount =
+    document.getElementById("studentsCount");
+
+if (tutorsCount && studentsCount) {
+
+    let tutorCount = 0;
+    let studentCount = 0;
+
+    const interval = setInterval(() => {
+
+        tutorCount += 10;
+        studentCount += 200;
+
+        tutorsCount.innerText = tutorCount;
+        studentsCount.innerText = studentCount;
+
+        if (tutorCount >= 500) {
+
+            clearInterval(interval);
+
+            tutorsCount.innerText = "500+";
+            studentsCount.innerText = "10000+";
+
+        }
+
+    }, 20);
+
+}
