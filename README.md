@@ -410,10 +410,6 @@ TutorConnect was developed through the collaborative efforts of a dedicated team
 ## 👨‍💻 Imaan Abrahams
 ### Front-End Developer & Project Integration
 
-Before entering the technology industry, I worked as a **Sales Representative** and later as a **Waiter**. These experiences helped me develop strong communication, teamwork, customer service, and problem-solving skills.
-
-I decided to transition into software development because I wanted to create meaningful digital solutions and challenge myself to build interactive, modern applications.
-
 ### Contributions
 
 - Developed the website using HTML, CSS, and JavaScript
