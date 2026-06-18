@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TutorConnect - Tutor Registration</title>
+</head>
+<body>
+
+  <main class="form-wrapper">
+    <header class="form-header">
+      <h2>Become a Tutor on TutorConnect</h2>
+      <p>Complete your profile and set your teaching availability.</p>
+    </header>
+
+    <!-- Progress Indicator Tracker -->
+    <nav class="progress-indicator" aria-label="Registration Progress">
+      <ol>
+        <li class="step active">1. Profile</li>
+        <li class="step">2. Credentials</li>
+        <li class="step">3. Availability Setup</li>
+        <li class="step">4. Rates & Review</li>
+      </ol>
+    </nav>
+
+    
+    <form id="tutorRegistrationForm" action="/api/tutors/register" method="POST" enctype="multipart/form-data" novalidate>
+      
+      
+      <fieldset class="form-step step-visible" id="tutorStep1">
+        <legend>Personal Profile Information</legend>
+        
+        <div class="input-container">
+          <label for="tutorName">Full Legal Name</label>
+          <input type="text" id="tutorName" name="fullName" required placeholder="Enter your full name">
+        </div>
+
+        <div class="input-container">
+          <label for="tutorEmail">Email Address</label>
+          <input type="email" id="tutorEmail" name="email" required placeholder="tutor@example.com">
+        </div>
+
+        <div class="input-container">
+          <label for="tutorBio">Professional Biography</label>
+          <textarea id="tutorBio" name="bio" rows="5" required placeholder="Describe your teaching journey and experience"></textarea>
+        </div>
+
+        <div class="navigation-controls">
+          <button type="button" class="btn btn-next" data-next="tutorStep2">Continue to Credentials</button>
+        </div>
+      </fieldset>
+
+      <!-- STEP 2: Academic & Professional Credentials -->
+      <fieldset class="form-step" id="tutorStep2">
+        <legend>Academic Domains & Certifications</legend>
+
+        <div class="input-container">
+          <label for="primarySubject">Primary Expertise Subject</label>
+          <select id="primarySubject" name="primarySubject" required>
+            <option value="" disabled selected>Select your strongest subject</option>
+            <option value="mathematics">Mathematics (Calculus/Algebra)</option>
+            <option value="sciences">Sciences (Physics/Chemistry/Biology)</option>
+            <option value="languages">Languages & Literature</option>
+            <option value="cs">Computer Science & Coding</option>
+          </select>
+        </div>
+
+        <div class="input-container">
+          <label for="degreeDoc">Upload Academic Credential (PDF format only)</label>
+          <input type="file" id="degreeDoc" name="credentialFile" accept=".pdf" required>
+        </div>
+
+        <div class="navigation-controls">
+          <button type="button" class="btn btn-back" data-prev="tutorStep1">Back</button>
+          <button type="button" class="btn btn-next" data-next="tutorStep3">Set Your Availability</button>
+        </div>
+      </fieldset>
+
+      
+      <fieldset class="form-step" id="tutorStep3">
+        <legend>Weekly Availability</legend>
+        <p class="section-description">Define the recurring weekly calendar windows where you are open to receiving session bookings.</p>
+
+        <!-- Modality Controls -->
+        <div class="input-container">
+          <label for="teachingModality">Preferred Lesson Modality</label>
+          <select id="teachingModality" name="modality" required>
+            <option value="online">Online Digital Classroom Only</option>
+            <option value="inperson">In-Person/Local Only</option>
+            <option value="hybrid">Hybrid (Both Online & In-Person)</option>
+          </select>
+        </div>
+
+      
+
+      
+        <div class="nested-calendar-module">
+          <h4>Set Weekly Time Blocks</h4>
+          <div class="weekday-row">
+            <span class="day-label">Mondays</span>
+            <div class="time-slots-container">
+              <div class="time-slot-pair">
+                <input type="time" name="availability[monday][start][]" aria-label="Monday shift start time">
+                <span>to</span>
+                <input type="time" name="availability[monday][end][]" aria-label="Monday shift end time">
+              </div>
+            </div>
+            <button type="button" class="btn-add-hours" title="Add another active shift window for Monday">+ Add Window</button>
+          </div>
+
+          <div class="weekday-row">
+            <span class="day-label">Tuesdays</span>
+            <div class="time-slots-container">
+              <div class="time-slot-pair">
+                <input type="time" name="availability[tuesday][start][]" aria-label="Tuesday shift start time">
+                <span>to</span>
+                <input type="time" name="availability[tuesday][end][]" aria-label="Tuesday shift end time">
+              </div>
+            </div>
+            <button type="button" class="btn-add-hours" title="Add another active shift window for Tuesday">+ Add Window</button>
+          </div>
+
+           <div class="weekday-row">
+            <span class="day-label">Wednesday</span>
+            <div class="time-slots-container">
+              <div class="time-slot-pair">
+                <input type="time" name="availability[wednesday][start][]" aria-label="Wednesday shift start time">
+                <span>to</span>
+                <input type="time" name="availability[wednesday][end][]" aria-label="Wednesday shift end time">
+              </div>
+            </div>
+            <button type="button" class="btn-add-hours" title="Add another active shift window for Wednesday">+ Add Window</button>
+          </div>
+
+           <div class="weekday-row">
+            <span class="day-label">Thursday</span>
+            <div class="time-slots-container">
+              <div class="time-slot-pair">
+                <input type="time" name="availability[thursday][start][]" aria-label="Thursday shift start time">
+                <span>to</span>
+                <input type="time" name="availability[thursday][end][]" aria-label="Thursday shift end time">
+              </div>
+            </div>
+            <button type="button" class="btn-add-hours" title="Add another active shift window for Tuesday">+ Add Window</button>
+          </div>
+          
+          <!-- Additional weekday rows would follow this exact logical loop pattern -->
+        </div>
+
+        <div class="navigation-controls">
+          <button type="button" class="btn btn-back" data-prev="tutorStep2">Back</button>
+          <button type="button" class="btn btn-next" data-next="tutorStep4">Continue to Rates</button>
+        </div>
+      </fieldset>
+
+      <!-- STEP 4: Rates & Final Legal Sign-off -->
+      <fieldset class="form-step" id="tutorStep4">
+        <legend>Financial Terms & Legal Consent</legend>
+
+        <div class="input-container">
+          <label for="hourlyRate">Desired Base Hourly Compensation ($ USD)</label>
+          <input type="number" id="hourlyRate" name="hourlyRate" min="15" max="150" required placeholder="35">
+        </div>
+
+        <div class="input-checkbox-container">
+          <input type="checkbox" id="backgroundConsent" name="backgroundCheckAgreement" required>
+          <label for="backgroundConsent">I explicitly authorize TutorConnect to initiate a third-party background safety check verification.</label>
+        </div>
+
+        <div class="navigation-controls">
+          <button type="button" class="btn btn-back" data-prev="tutorStep3">Back</button>
+          <button type="submit" class="btn btn-submit">Submit Registration Application</button>
+        </div>
+      </fieldset>
+
+    </form>
+  </main>
+
+</body>
+</html>

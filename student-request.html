@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TutorConnect - Request a Tutor</title>
+    <link rel="stylesheet" href="./global-form.css" />
+  </head>
+  <body>
+    <main class="form-wrapper">
+      <header class="form-header">
+        <span class="section-badge">Step 01 / Booking</span>
+        <h2>Find a Tutor & Book a Lesson</h2>
+        <p>
+          Tell us what you need and secure a calendar reservation window
+          instantly.
+        </p>
+      </header>
+
+      <form
+        id="studentBookingForm"
+        action="/api/bookings/create"
+        method="POST"
+        novalidate
+      >
+        <fieldset class="form-section-block">
+          <span class="section-badge">What We Offer</span>
+          <label class="main-field-label">Select Your Target Service</label>
+
+          <div class="services-3col-grid">
+            <input
+              type="radio"
+              id="srvMath"
+              name="requestedSubject"
+              value="mathematics"
+              checked
+              required
+            />
+            <label for="srvMath" class="srv-card-item">
+              <div class="srv-icon-box bg-green">📚</div>
+              <strong>Mathematics</strong>
+              <span
+                >Grade 8 to 12. Algebra, calculus, statistics, and more.</span
+              >
+            </label>
+
+            <input
+              type="radio"
+              id="srvScience"
+              name="requestedSubject"
+              value="science"
+            />
+            <label for="srvScience" class="srv-card-item">
+              <div class="srv-icon-box bg-teal">🧪</div>
+              <strong>Science</strong>
+              <span
+                >Physics & Chemistry with hands-on problem solving and concept
+                mastery.</span
+              >
+            </label>
+
+            <input
+              type="radio"
+              id="srvProg"
+              name="requestedSubject"
+              value="programming"
+            />
+            <label for="srvProg" class="srv-card-item">
+              <div class="srv-icon-box bg-dark">💻</div>
+              <strong>Programming</strong>
+              <span
+                >HTML, CSS, JavaScript — from beginner fundamentals to real
+                projects.</span
+              >
+            </label>
+
+            <input
+              type="radio"
+              id="srvLang"
+              name="requestedSubject"
+              value="languages"
+            />
+            <label for="srvLang" class="srv-card-item">
+              <div class="srv-icon-box bg-blue">📖</div>
+              <strong>Languages</strong>
+              <span
+                >English & Afrikaans — reading comprehension, writing, and
+                grammar.</span
+              >
+            </label>
+
+            <input
+              type="radio"
+              id="srvExam"
+              name="requestedSubject"
+              value="exam_prep"
+            />
+            <label for="srvExam" class="srv-card-item">
+              <div class="srv-icon-box bg-yellow">📄</div>
+              <strong>Exam Preparation</strong>
+              <span
+                >Structured revision, past papers, and strategies to maximise
+                your marks.</span
+              >
+            </label>
+
+            <input
+              type="radio"
+              id="srvArt"
+              name="requestedSubject"
+              value="art_design"
+            />
+            <label for="srvArt" class="srv-card-item">
+              <div class="srv-icon-box bg-orange">🎨</div>
+              <strong>Art & Design</strong>
+              <span
+                >Visual arts, design principles, composition, and creative
+                techniques.</span
+              >
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section-block">
+          <span class="section-badge">Availability Matrix</span>
+          <label class="main-field-label">Schedule Reservation Details</label>
+
+          <div class="nested-live-booking-module">
+            <div class="input-container">
+              <label for="bookingReservationDate">1. Select a Date</label>
+              <input
+                type="date"
+                id="bookingReservationDate"
+                name="selectedDate"
+                required
+                min="2026-06-17"
+              />
+            </div>
+
+            <div class="live-time-slices">
+              <label>2. Select an Available Start Time</label>
+              <div class="time-radio-buttons">
+                <input
+                  type="radio"
+                  id="slot1"
+                  name="selectedTimeSlot"
+                  value="09:00"
+                  required
+                />
+                <label for="slot1">09:00 AM</label>
+
+                <input
+                  type="radio"
+                  id="slot2"
+                  name="selectedTimeSlot"
+                  value="11:30"
+                />
+                <label for="slot2">11:30 AM</label>
+
+                <input
+                  type="radio"
+                  id="slot3"
+                  name="selectedTimeSlot"
+                  value="14:00"
+                />
+                <label for="slot3">02:00 PM</label>
+
+                <input
+                  type="radio"
+                  id="slot4"
+                  name="selectedTimeSlot"
+                  value="16:30"
+                />
+                <label for="slot4">04:30 PM</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn btn-submit-full">
+          Confirm Booking Request
+        </button>
+      </form>
+    </main>
+
+    <script src="./student-request.js"></script>
+  </body>
+</html>

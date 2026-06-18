@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TutorConnect - Session Feedback</title>
+    <link rel="stylesheet" href="./global-form.css" />
+  </head>
+  <body>
+    <main class="form-wrapper">
+      <header class="form-header">
+        <span class="section-badge">Quality Assessment</span>
+        <h2>Rate Your TutorConnect Session</h2>
+        <p>
+          Your feedback helps maintain high quality standards across our
+          platform.
+        </p>
+      </header>
+
+      <form
+        id="sessionFeedbackForm"
+        action="/api/feedback/submit"
+        method="POST"
+        novalidate
+      >
+        <input type="hidden" name="sessionId" value="session_abc123" />
+
+        <fieldset class="form-section-block feedback-assessment-card">
+          <div class="input-container rating-group">
+            <label id="starRatingLabel">Overall Lesson Score</label>
+            <div
+              class="star-rating-inputs"
+              role="radiogroup"
+              aria-labelledby="starRatingLabel"
+            >
+              <input
+                type="radio"
+                id="star5"
+                name="starRating"
+                value="5"
+                required
+              />
+              <label for="star5" title="5 Stars">★</label>
+              <input type="radio" id="star4" name="starRating" value="4" />
+              <label for="star4" title="4 Stars">★</label>
+              <input type="radio" id="star3" name="starRating" value="3" />
+              <label for="star3" title="3 Stars">★</label>
+              <input type="radio" id="star2" name="starRating" value="2" />
+              <label for="star2" title="2 Stars">★</label>
+              <input type="radio" id="star1" name="starRating" value="1" />
+              <label for="star1" title="1 Star">★</label>
+            </div>
+          </div>
+
+          <div class="input-container status-toggles">
+            <label>Did the tutor start the lesson on time?</label>
+            <div class="radio-toggle-group">
+              <input
+                type="radio"
+                id="puncYes"
+                name="isPunctual"
+                value="true"
+                required
+              />
+              <label for="puncYes" class="toggle-custom-btn"
+                >Yes, on time</label
+              >
+
+              <input type="radio" id="puncNo" name="isPunctual" value="false" />
+              <label for="puncNo" class="toggle-custom-btn"
+                >No, they were late</label
+              >
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-section-block">
+          <div class="input-container">
+            <label for="publicReview">Public Profile Review Summary</label>
+            <p class="field-instruction">
+              This review will be published openly on the tutor's public
+              dashboard page.
+            </p>
+            <textarea
+              id="publicReview"
+              name="publicReviewText"
+              rows="5"
+              required
+              placeholder="Write a comment about their teaching style..."
+            ></textarea>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="btn btn-submit-full">
+          Submit Anonymous Feedback
+        </button>
+      </form>
+    </main>
+
+    <script src="./session-feedback.js"></script>
+  </body>
+</html>

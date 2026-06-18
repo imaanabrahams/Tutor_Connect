@@ -1,0 +1,502 @@
+:root {
+  --primary: #4338ca;
+  --primary-hover: #3730a3;
+  --primary-light: #eff6ff;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+
+  --error: #ef4444;
+  --error-bg: #fef2f2;
+  --star-inactive: #cbd5e1;
+  --star-active: #eab308;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  padding: 2rem 1rem;
+}
+
+.form-wrapper {
+  background: var(--card);
+  max-width: 720px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.01),
+    0 2px 4px -1px rgba(0, 0, 0, 0.01);
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.form-header h2 {
+  color: var(--text);
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.form-header p,
+.field-instruction {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.section-badge {
+  display: block;
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.form-section-block {
+  border: none;
+  margin-bottom: 2.5rem;
+}
+
+.main-field-label {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.input-container label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.input-container input[type="text"],
+.input-container input[type="email"],
+.input-container input[type="number"],
+.input-container input[type="date"],
+.input-container input[type="time"],
+.input-container select,
+.input-container textarea {
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text);
+  background-color: #ffffff;
+  font-family: inherit;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  width: 100%;
+}
+
+.input-container textarea {
+  resize: vertical;
+}
+
+.input-container input:focus,
+.input-container select:focus,
+.input-container textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.12);
+}
+
+.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-submit-full {
+  background-color: var(--primary);
+  color: #ffffff;
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-submit-full:hover {
+  background-color: var(--primary-hover);
+}
+
+.services-3col-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.services-3col-grid input[type="radio"] {
+  display: none;
+}
+
+.srv-card-item {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.005);
+}
+
+.srv-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.bg-green {
+  background-color: #f0fdf4;
+  border: 1px solid #dcfce7;
+}
+.bg-teal {
+  background-color: #f0fdfa;
+  border: 1px solid #ccfbf1;
+}
+.bg-dark {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+.bg-blue {
+  background-color: #eff6ff;
+  border: 1px solid #dbeafe;
+}
+.bg-yellow {
+  background-color: #fefce8;
+  border: 1px solid #fef9c3;
+}
+.bg-orange {
+  background-color: #fff7ed;
+  border: 1px solid #ffedd5;
+}
+
+.srv-card-item strong {
+  font-size: 1.15rem;
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.srv-card-item span {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.srv-card-item:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.03);
+}
+
+.services-3col-grid input[type="radio"]:checked + .srv-card-item {
+  border-color: var(--primary);
+  background-color: #ffffff;
+  box-shadow:
+    0 0 0 1px var(--primary),
+    0 10px 15px -3px rgba(67, 56, 202, 0.05);
+}
+
+.nested-live-booking-module {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  background-color: #ffffff;
+}
+
+.live-time-slices {
+  margin-top: 1.25rem;
+}
+
+.live-time-slices label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+}
+
+.time-radio-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.time-radio-buttons input[type="radio"] {
+  display: none;
+}
+
+.time-radio-buttons label {
+  display: block;
+  background-color: #f8fafc;
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.25rem;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--text);
+  transition: all 0.2s ease;
+  margin-bottom: 0;
+}
+
+.time-radio-buttons input[type="radio"]:checked + label {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
+.feedback-assessment-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.star-rating-inputs {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.star-rating-inputs input[type="radio"] {
+  display: none;
+}
+
+.star-rating-inputs label {
+  font-size: 2.25rem;
+  color: var(--star-inactive);
+  cursor: pointer;
+  transition: color 0.1s ease;
+}
+
+.star-rating-inputs label:hover,
+.star-rating-inputs label:hover ~ label,
+.star-rating-inputs input[type="radio"]:checked ~ label {
+  color: var(--star-active);
+}
+
+.radio-toggle-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.radio-toggle-group input[type="radio"] {
+  display: none;
+}
+
+.toggle-custom-btn {
+  display: inline-block;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text);
+  transition: all 0.2s ease;
+}
+
+.radio-toggle-group input[type="radio"]:checked + .toggle-custom-btn {
+  background-color: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.contact-page-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  max-width: 1100px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+  align-items: center;
+}
+
+.contact-info-panel h1 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 0.25rem;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.panel-intro-text {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+}
+
+.contact-details-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detail-item-block {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.detail-icon {
+  font-size: 1.25rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.detail-text-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+}
+
+.detail-anchor-link,
+.detail-static-text {
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+.detail-anchor-link:hover {
+  color: var(--primary);
+}
+
+.contact-form-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.01);
+}
+
+.error-message-text {
+  color: var(--error);
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.4rem;
+  display: none;
+}
+.field-invalid input,
+.field-invalid select,
+.field-invalid textarea,
+.field-invalid .nested-live-booking-module,
+.field-invalid .feedback-assessment-card {
+  border-color: var(--error) !important;
+}
+
+.field-invalid .srv-card-item {
+  border-color: #fca5a5;
+}
+.field-invalid .error-message-text {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .contact-page-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  .services-3col-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  body {
+    padding: 1rem 0.5rem;
+  }
+}
+
+.form-wrapper,
+.contact-form-card {
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+.form-header h2 {
+  font-size: 1.5rem;
+}
+.services-3col-grid {
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+.time-radio-buttons {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.toggle-custom-btn {
+  text-align: center;
+}
