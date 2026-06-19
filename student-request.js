@@ -1,96 +1,92 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const bookingForm = document.getElementById("studentBookingForm");
-  const serviceCards = document.querySelectorAll(
-    '.services-3col-grid input[type="radio"]',
-  );
+  const form = document.getElementById("studentBookingForm");
+  const nextButtons = document.querySelectorAll(".btn-next");
+  const prevButtons = document.querySelectorAll(".btn-back");
 
-  serviceCards.forEach((input) => {
-    input.addEventListener("change", (e) => {
-      const serviceWrapper = e.target.closest(".form-section-block");
-      if (serviceWrapper) {
-        serviceWrapper.classList.remove("field-invalid");
-        const errors = serviceWrapper.querySelectorAll(".error-message-text");
-        errors.forEach((err) => err.remove());
+  nextButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const currentStep = btn.closest(".form-step");
+      const nextStepId = btn.getAttribute("data-next");
+      const nextStep = document.getElementById(nextStepId);
+
+      if (validateStepInputs(currentStep)) {
+        currentStep.classList.remove("step-visible");
+        nextStep.classList.add("step-visible");
+        updateProgressBadges(nextStepId);
       }
     });
   });
 
-  bookingForm.addEventListener("submit", (e) => {
-    e.preventDefault(); //
-    let formIsValid = true;
+  prevButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const currentStep = btn.closest(".form-step");
+      const prevStepId = btn.getAttribute("data-prev");
+      const prevStep = document.getElementById(prevStepId);
 
-    const selectedService = document.querySelector(
-      'input[name="requestedSubject"]:checked',
+      currentStep.classList.remove("step-visible");
+      prevStep.classList.add("step-visible");
+      updateProgressBadges(prevStepId);
+    });
+  });
+
+  function updateProgressBadges(stepId) {
+    const currentStepNum = parseInt(stepId.replace(/^\D+/g, ""), 10);
+
+    document.querySelectorAll(".wizard-step").forEach((badge, idx) => {
+      if (idx + 1 <= currentStepNum) {
+        badge.classList.add("active");
+      } else {
+        badge.classList.remove("active");
+      }
+    });
+  }
+
+  function validateStepInputs(stepContainer) {
+    let stepIsValid = true;
+    const items = stepContainer.querySelectorAll(
+      "input[required], select[required]",
     );
-    const serviceSection = document
-      .querySelector(".services-3col-grid")
-      .closest(".form-section-block");
 
-    if (!selectedService) {
-      formIsValid = false;
-      showCustomError(
-        serviceSection,
-        "Please select one of our available services.",
-      );
-    }
-
-    const selectedTime = document.querySelector(
-      'input[name="selectedTimeSlot"]:checked',
-    );
-    const timeSection = document.querySelector(".nested-live-booking-module");
-
-    if (!selectedTime) {
-      formIsValid = false;
-      showCustomError(
-        timeSection,
-        "Please select an available appointment time slot.",
-      );
-    }
-
-    const standardInputs = bookingForm.querySelectorAll("input[required]");
-    standardInputs.forEach((input) => {
+    items.forEach((input) => {
       const container = input.closest(".input-container");
-      if (!input.checkValidity()) {
-        formIsValid = false;
-        if (container)
-          showCustomError(
-            container,
-            input.validationMessage || "This field is required.",
-          );
-      } else if (container) {
-        clearError(container);
+      if (container) {
+        container.classList.remove("field-invalid");
+
+        if (!input.checkValidity()) {
+          stepIsValid = false;
+          container.classList.add("field-invalid");
+
+          let errLabel = container.querySelector(".error-message-text");
+          if (!errLabel) {
+            errLabel = document.createElement("span");
+            errLabel.className = "error-message-text";
+            container.appendChild(errLabel);
+          }
+          errLabel.textContent =
+            input.validationMessage || "This field is required.";
+        }
       }
     });
+    return stepIsValid;
+  }
 
-    if (formIsValid) {
-      const formData = new FormData(bookingForm);
-      const payload = Object.fromEntries(formData.entries());
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const finalStep = document.getElementById("studentStep3");
 
-      console.log("🚀 Booking Form Submission Payload:", payload);
+    if (validateStepInputs(finalStep)) {
+      const rawData = new FormData(form);
+      const dataPayload = Object.fromEntries(rawData.entries());
+
+      console.log("🚀 Real Web Payload Consolidated Package:", dataPayload);
       alert(
-        `🎉 Success! Booking reserved for ${payload.requestedSubject} on ${payload.selectedDate} at ${payload.selectedTimeSlot}.`,
+        `Success! We are matching you with an expert tutor for ${dataPayload.requestedSubject}!`,
       );
+      form.reset();
 
-      bookingForm.reset();
+      document.getElementById("studentStep3").classList.remove("step-visible");
+      document.getElementById("studentStep1").classList.add("step-visible");
+      updateProgressBadges("studentStep1");
     }
   });
-
-  function showCustomError(wrapperElement, errorMessage) {
-    wrapperElement.classList.add("field-invalid");
-    let errorText = wrapperElement.querySelector(".error-message-text");
-
-    if (!errorText) {
-      errorText = document.createElement("span");
-      errorText.className = "error-message-text";
-      wrapperElement.appendChild(errorText);
-    }
-    errorText.textContent = errorMessage;
-    errorText.style.display = "block";
-  }
-
-  function clearError(wrapperElement) {
-    wrapperElement.classList.remove("field-invalid");
-    const errorText = wrapperElement.querySelector(".error-message-text");
-    if (errorText) errorText.style.display = "none";
-  }
 });
