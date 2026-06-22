@@ -59,9 +59,9 @@
       <div class="hero">
         <div class="container hero__grid">
           <div class="hero__copy">
-            <span class="eyebrow">Trusted by 100,000+ students</span>
+            <span class="eyebrow">AI-ready learning support</span>
             <h1 class="hero__title">Find the right tutor for <span class="text-primary">every subject</span></h1>
-            <p class="hero__lead">TutorConnect pairs students with qualified, vetted tutors for personalised one-on-one support — online and on your schedule.</p>
+            <p class="hero__lead">TutorConnect pairs students with qualified, vetted tutors for personalised one-on-one support, adaptive study plans, and flexible online sessions.</p>
             <div class="hero__cta">
               <button class="btn btn--primary btn--lg" data-page="tutors">Find a Tutor</button>
               <button class="btn btn--ghost btn--lg" data-page="services">Browse Subjects</button>
@@ -72,15 +72,64 @@
               <li>Personalised learning plans</li>
             </ul>
           </div>
+
           <div class="hero__art">
             <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=80"
                  alt="Two students studying together at a laptop" loading="lazy"
                  onerror="this.style.display='none'" />
+            <div class="orbit-card">
+              <span>Live Match Score</span>
+              <strong id="heroMatchScore">97%</strong>
+              <small>goals, subject, and availability aligned</small>
+            </div>
           </div>
         </div>
       </div>
-
+       <br>
+      <div class="container quick-match-wrap">
+        <form class="quick-match" id="quickMatchForm">
+          <div class="quick-match__head">
+            <span class="eyebrow">Smart match</span>
+            <h2>Build a tutoring plan in seconds</h2>
+          </div>
+          <label>
+            <span>Subject</span>
+            <select id="matchSubject" aria-label="Choose a subject">
+              <option>Programming</option>
+              <option>Mathematics</option>
+              <option>Science</option>
+              <option>Arts & Design</option>
+              <option>English</option>
+              <option>Afrikaans</option>
+              <option>Exam Preparation</option>
+            </select>
+          </label>
+          <label>
+            <span>Level</span>
+            <select id="matchLevel" aria-label="Choose a level">
+              <option>Grade 8-9</option>
+              <option>Grade 10-12</option>
+              <option>University</option>
+              <option>Beginner</option>
+            </select>
+          </label>
+          <label>
+            <span>Goal</span>
+            <select id="matchGoal" aria-label="Choose a goal">
+              <option>Improve marks</option>
+              <option>Exam preparation</option>
+              <option>Catch up fast</option>
+              <option>Build confidence</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn--primary">Match Me</button>
+        </form>
+        <div class="match-result" id="matchResult" hidden></div>
+      </div>
+      <br>
       <!-- stats -->
+       <br>
+       <br>
       <div class="container">
         <div class="stats" id="statRow">
           <div class="stat-card"><span class="stat-card__icon" aria-hidden="true">👩‍🏫</span><span class="stat-card__num" data-count="12" data-suffix="+">12+</span><span class="stat-card__label">Expert Tutors</span></div>
@@ -232,6 +281,22 @@
 
         <!-- subject filter pills -->
         <div class="pills" id="subjectPills"><!-- rendered by JS --></div>
+
+        <div class="tutor-tools" aria-label="Tutor browsing tools">
+          <label class="select-field">
+            <span>Sort</span>
+            <select id="tutorSort">
+              <option value="recommended">Recommended</option>
+              <option value="rating">Highest rating</option>
+              <option value="reviews">Most reviewed</option>
+              <option value="rate">Lowest rate</option>
+            </select>
+          </label>
+          <label class="toggle-field">
+            <input type="checkbox" id="availableOnly" />
+            <span>Available this week</span>
+          </label>
+        </div>
 
         <p class="tutor-count" id="tutorCount" aria-live="polite"></p>
         <div class="tutors" id="tutorGrid"><!-- rendered by JS --></div>
@@ -443,6 +508,41 @@
 
   <!-- toast -->
   <div class="toast" id="toast" hidden></div>
+
+  <div class="modal" id="bookingModal" hidden>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="bookingTitle">
+      <button class="modal__close" id="bookingClose" aria-label="Close booking dialog">x</button>
+      <span class="eyebrow">Session request</span>
+      <h2 id="bookingTitle">Book a tutor</h2>
+      <p id="bookingIntro"></p>
+      <form id="bookingForm" class="booking-form">
+        <label>
+          <span>Preferred day</span>
+          <select id="bookingDay">
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+            <option>Saturday</option>
+          </select>
+        </label>
+        <label>
+          <span>Session length</span>
+          <select id="bookingLength">
+            <option>45 minutes</option>
+            <option>60 minutes</option>
+            <option>90 minutes</option>
+          </select>
+        </label>
+        <label>
+          <span>What should the tutor focus on?</span>
+          <textarea id="bookingNotes" rows="4" placeholder="Example: calculus revision, past paper questions, confidence with basics"></textarea>
+        </label>
+        <button type="submit" class="btn btn--primary btn--block">Send Request</button>
+      </form>
+    </div>
+  </div>
 
   <script src="css/js/script.js"></script>
 </body>

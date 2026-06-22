@@ -64,6 +64,21 @@
   ];
 
   const SUBJECTS = ["All", "Mathematics", "Science", "Programming", "Languages", "Exam Preparation", "Art & Design"];
+  const TUTOR_EXTRAS = [
+    { rate: 320, available: true,  next: "Today 17:00",     match: 97, tags: ["Fast reply", "Study plan"] },
+    { rate: 280, available: true,  next: "Tue 18:30",       match: 94, tags: ["Lab support", "Exam drills"] },
+    { rate: 350, available: true,  next: "Wed 16:00",       match: 96, tags: ["Projects", "Code review"] },
+    { rate: 260, available: false, next: "Next week",       match: 88, tags: ["Writing", "Orals"] },
+    { rate: 300, available: true,  next: "Thu 19:00",       match: 95, tags: ["Past papers", "Calm strategy"] },
+    { rate: 240, available: true,  next: "Sat 10:00",       match: 90, tags: ["Portfolio", "Creative critique"] },
+    { rate: 250, available: true,  next: "Today 15:30",     match: 92, tags: ["Foundations", "Homework"] },
+    { rate: 290, available: false, next: "Next week",       match: 87, tags: ["Chemistry", "Biology"] },
+    { rate: 330, available: true,  next: "Fri 17:30",       match: 95, tags: ["Python", "Web apps"] },
+    { rate: 230, available: true,  next: "Thu 16:00",       match: 86, tags: ["Literature", "Essays"] },
+    { rate: 360, available: true,  next: "Mon 18:00",       match: 93, tags: ["University", "Calculus"] },
+    { rate: 310, available: true,  next: "Tue 17:00",       match: 94, tags: ["NSC", "IEB"] }
+  ];
+  TUTORS.forEach((tutor, index) => Object.assign(tutor, TUTOR_EXTRAS[index] || TUTOR_EXTRAS[0]));
 
   /* ---------------- HELPERS ---------------- */
   const $  = (s, c) => (c || document).querySelector(s);
@@ -113,6 +128,12 @@
           </div>
         </div>
         <p class="tutor__bio">${t.bio}</p>
+        <div class="tutor__meta">
+          <span class="tutor__chip ${t.available ? "tutor__chip--live" : ""}">${t.available ? "Available this week" : "Limited slots"}</span>
+          <span class="tutor__chip">${t.next}</span>
+          <span class="tutor__chip tutor__rate">R${t.rate}/hr</span>
+          <span class="tutor__chip">${t.match}% match</span>
+        </div>
         <div class="tutor__foot">
           <span class="tutor__rating"><span class="star">★</span> ${t.rating.toFixed(1)} <span class="reviews">(${t.reviews} reviews)</span></span>
           <button class="tutor__book" data-book="${t.name}">Book Session →</button>
@@ -124,10 +145,18 @@
   function renderTutors() {
     const grid = $("#tutorGrid"); if (!grid) return;
     const q = ($("#tutorSearch") ? $("#tutorSearch").value : "").trim().toLowerCase();
+    const onlyAvailable = $("#availableOnly") && $("#availableOnly").checked;
+    const sortBy = $("#tutorSort") ? $("#tutorSort").value : "recommended";
     const list = TUTORS.filter(t => {
       const matchSubject = activeSubject === "All" || t.subject === activeSubject;
       const matchSearch  = !q || (t.name + " " + t.subject + " " + t.level).toLowerCase().includes(q);
-      return matchSubject && matchSearch;
+      const matchAvailability = !onlyAvailable || t.available;
+      return matchSubject && matchSearch && matchAvailability;
+    }).sort((a, b) => {
+      if (sortBy === "rating") return b.rating - a.rating;
+      if (sortBy === "reviews") return b.reviews - a.reviews;
+      if (sortBy === "rate") return a.rate - b.rate;
+      return b.match - a.match;
     });
     grid.innerHTML = list.map(tutorCard).join("");
     const count = $("#tutorCount");
@@ -140,6 +169,32 @@
     const wrap = $("#subjectPills"); if (!wrap) return;
     wrap.innerHTML = SUBJECTS.map(s =>
       `<button class="pill ${s === activeSubject ? "pill--active" : ""}" data-subject="${s}">${s}</button>`).join("");
+  }
+
+  function initQuickMatch() {
+    const subject = $("#matchSubject");
+    if (!subject) return;
+    subject.innerHTML = SERVICES.map(s => `<option value="${s.title}">${s.title}</option>`).join("");
+    const form = $("#quickMatchForm");
+    if (!form) return;
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const chosenSubject = subject.value;
+      const chosenLevel = $("#matchLevel").value;
+      const chosenGoal = $("#matchGoal").value;
+      const match = TUTORS
+        .filter(t => t.subject === chosenSubject)
+        .sort((a, b) => b.available - a.available || b.match - a.match || b.rating - a.rating)[0];
+      if (!match) return;
+      const result = $("#matchResult");
+      $("#heroMatchScore").textContent = match.match + "%";
+      result.hidden = false;
+      result.innerHTML = `
+        <strong>${match.name}</strong> is your best ${chosenSubject} match for ${chosenLevel.toLowerCase()}.
+        <br>${chosenGoal}: start with a ${match.next.toLowerCase()} session at R${match.rate}/hr.
+        <br><button class="btn btn--ghost" data-page="tutors" data-filter="${chosenSubject}">View matching tutors</button>
+        <button class="btn btn--primary" data-book="${match.name}">Book ${match.name.split(" ")[0]}</button>`;
+    });
   }
 
   /* ---------------- SUBJECT PAGE ---------------- */
