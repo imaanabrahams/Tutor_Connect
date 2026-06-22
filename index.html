@@ -1,178 +1,454 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TutorConnect</title>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TutorConnect pairs students with qualified, vetted tutors for personalised one-on-one academic support — online and on your schedule." />
+  <title>TutorConnect — Find the Right Tutor for Every Subject</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
+  <!-- ===================== NAVIGATION ===================== -->
+  <header class="nav" id="topnav">
+    <div class="nav__inner">
+      <a href="#home" class="brand" data-page="home" aria-label="TutorConnect home">
+        <span class="brand__cap" aria-hidden="true">🎓</span>
+        <span class="brand__name">TutorConnect</span>
+      </a>
 
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <nav>
-      <div class="logo">🎓 TutorConnect</div>
+      <nav class="nav__links" aria-label="Primary navigation">
+        <button class="nav__link" data-page="home">Home</button>
+        <button class="nav__link" data-page="about">About</button>
+        <button class="nav__link" data-page="services">Services</button>
+        <button class="nav__link" data-page="tutors">Tutors</button>
+        <button class="nav__link" data-page="contact">Contact</button>
+      </nav>
 
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#tutors">Tutors</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-
-      <button id="darkModeBtn">🌙</button>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <button class="btn btn--primary nav__signin" data-page="signin">Sign In</button>
+        <div class="nav__account" id="navAccount" hidden>
+          <span class="nav__avatar" id="navAvatar">U</span>
+          <span class="nav__hi" id="navHi">Hi</span>
+          <button class="nav__signout" id="navSignout">Sign out</button>
+        </div>
+        <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+    <nav class="nav__mobile" id="navMobile" aria-label="Mobile navigation">
+      <button class="nav__link" data-page="home">Home</button>
+      <button class="nav__link" data-page="about">About</button>
+      <button class="nav__link" data-page="services">Services</button>
+      <button class="nav__link" data-page="tutors">Tutors</button>
+      <button class="nav__link" data-page="contact">Contact</button>
+      <button class="nav__link" data-page="signin">Sign In</button>
     </nav>
+  </header>
 
-    <section id="home" class="hero">
-      <div class="hero-text">
-        <h1>Learn Smarter. Achieve More.</h1>
+  <main id="main">
 
-        <p>Connect with qualified tutors and boost your academic success.</p>
-        <br />
-        <button>Find a Tutor</button>
+    <!-- ===================== HOME ===================== -->
+    <section class="page page--active" id="page-home">
+      <div class="hero">
+        <div class="container hero__grid">
+          <div class="hero__copy">
+            <span class="eyebrow">Trusted by 100,000+ students</span>
+            <h1 class="hero__title">Find the right tutor for <span class="text-primary">every subject</span></h1>
+            <p class="hero__lead">TutorConnect pairs students with qualified, vetted tutors for personalised one-on-one support — online and on your schedule.</p>
+            <div class="hero__cta">
+              <button class="btn btn--primary btn--lg" data-page="tutors">Find a Tutor</button>
+              <button class="btn btn--ghost btn--lg" data-page="services">Browse Subjects</button>
+            </div>
+            <ul class="hero__points">
+              <li>Vetted, experienced tutors</li>
+              <li>Flexible online sessions</li>
+              <li>Personalised learning plans</li>
+            </ul>
+          </div>
+          <div class="hero__art">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=900&q=80"
+                 alt="Two students studying together at a laptop" loading="lazy"
+                 onerror="this.style.display='none'" />
+          </div>
+        </div>
       </div>
 
-      <div class="hero-image">
-        <a href="https://imgbb.com/"
-          ><img
-            src="https://i.ibb.co/8D8T7pcs/download-1.jpg"
-            alt="download (1)"
-            border="0"
-            style="border-radius: 10px"
-        /></a>
-      </div>
-    </section>
-
-    <section class="stats">
-      <div class="card">
-        <h2 id="tutorsCount">12</h2>
-        <p>Expert Tutors</p>
+      <!-- stats -->
+      <div class="container">
+        <div class="stats" id="statRow">
+          <div class="stat-card"><span class="stat-card__icon" aria-hidden="true">👩‍🏫</span><span class="stat-card__num" data-count="12" data-suffix="+">12+</span><span class="stat-card__label">Expert Tutors</span></div>
+          <div class="stat-card"><span class="stat-card__icon" aria-hidden="true">🎓</span><span class="stat-card__num" data-count="100000" data-format="space" data-suffix="+">100 000+</span><span class="stat-card__label">Students Helped</span></div>
+          <div class="stat-card"><span class="stat-card__icon" aria-hidden="true">✅</span><span class="stat-card__num" data-count="95" data-suffix="%">95%</span><span class="stat-card__label">Pass Rate</span></div>
+        </div>
       </div>
 
-      <div class="card">
-        <h2 id="studentsCount">100 000</h2>
-        <p>Students Helped</p>
+      <!-- why -->
+      <div class="container section">
+        <div class="section__head center">
+          <span class="eyebrow">Why TutorConnect</span>
+          <h2 class="section__title">Built around how students actually learn</h2>
+        </div>
+        <div class="features" id="featureGrid"><!-- rendered by JS --></div>
       </div>
 
-      <div class="card">
-        <h2>95%</h2>
-        <p>Pass Rate</p>
+      <!-- subjects preview -->
+      <div class="container section">
+        <div class="section__head center">
+          <span class="eyebrow">What we offer</span>
+          <h2 class="section__title">Popular subjects</h2>
+          <p class="section__sub">Expert tutoring across core subjects — from school to university level.</p>
+        </div>
+        <div class="services" id="homeServices"><!-- rendered by JS --></div>
+        <div class="center" style="margin-top:28px">
+          <button class="btn btn--ghost" data-page="services">View all services</button>
+        </div>
       </div>
-    </section>
 
-    <section id="about">
-      <h2>About Us :</h2>
-      <br />
-      <p>
-        TutorConnect helps students find reliable tutors for academic support
-        and exam preparation. We connect learners with qualified tutors in
-        various subjects, ensuring personalized learning experiences and
-        improved academic performance. Our platform is designed to make the
-        process of finding a tutor easy and efficient, providing students with
-        the resources they need to succeed in their studies.
-      </p>
-      <br />
-      <p>
-        Our mission is to empower students to achieve their academic goals by
-        providing access to experienced tutors who can guide them through their
-        learning journey. We believe that every student has the potential to
-        excel when given the right support and encouragement.
-      </p>
-      <br />
-      <p>
-        At TutorConnet, we focus on creating a safe, supportive, and engaging
-        learning environment where students can build confidence, strengthen
-        their understanding of key concepts, and develop essential study skills.
-        Whether a student needs help with homework, test preparation,
-        assignments, or long-term academic improvement, our tutors are ready to
-        assist.
-      </p>
-      <br />
-      <p>
-        We are commited to making quality education accessible to everyone.
-        Through innovative technology and dedicated educators, TutorConnet
-        bridges the gap between students and expert tutors, helping learners
-        reach their full potential and achieve lasting academic success.
-      </p>
-      <br />
-      <p>
-        Our platform offers flexible online learning, personalized tutoring
-        plans, progress tracking, and one-on-one support tailored to each
-        student's unique needs. By combining technology with expert guidance, we
-        make learning more effective, convenient, and rewarding.
-      </p>
-    </section>
-
-    <section id="services">
-      <h2>Our Services :</h2>
-
-      <div class="service-grid">
-        <div class="service-card">
-          <h3>📚 Mathematics</h3>
-          <p>Grade 8 to University</p>
-        </div>
-
-        <div class="service-card">
-          <h3>🧪 Science</h3>
-          <p>Physics & Chemistry</p>
-        </div>
-
-        <div class="service-card">
-          <h3>💻 Programming</h3>
-          <p>HTML, CSS, JavaScript</p>
-        </div>
-
-        <div class="service-card">
-          <h3>📖 Languages</h3>
-          <p>English & Afrikaans</p>
-        </div>
-
-        <div class="service-card">
-          <h3>📝 Exam Prep</h3>
-          <p>Get ready for your exams with our expert tutors...</p>
-        </div>
-
-        <div class="service-card">
-          <h3>🎨 Art & Design</h3>
-          <p>Visual arts and design principles..</p>
+      <!-- CTA band -->
+      <div class="container section">
+        <div class="cta-band">
+          <h2>Ready to boost your marks?</h2>
+          <p>Create a free account and book your first session today.</p>
+          <button class="btn btn--light btn--lg" data-page="signin">Get Started Free</button>
         </div>
       </div>
     </section>
 
-    <section id="tutors">
-      <br />
-      <h2>Find Tutors :</h2>
+    <!-- ===================== ABOUT ===================== -->
+    <section class="page" id="page-about">
+      <div class="band-soft">
+        <div class="container about">
+          <div class="about__text">
+            <span class="eyebrow">Who we are</span>
+            <h1 class="section__title section__title--xl">About TutorConnect</h1>
+            <p>TutorConnect helps students find reliable tutors for academic support and exam preparation. We connect learners with qualified tutors in various subjects, ensuring personalised learning experiences and improved academic performance.</p>
+            <p>Our mission is to empower students to achieve their academic goals by providing access to experienced tutors who can guide them through their learning journey. We believe every student has the potential to excel with the right support.</p>
+            <p>We focus on creating a safe, supportive, and engaging learning environment where students can build confidence, strengthen their understanding of key concepts, and develop essential study skills.</p>
+            <p>Through innovative technology and dedicated educators, TutorConnect bridges the gap between students and expert tutors, offering flexible online learning, personalised tutoring plans, and progress tracking tailored to each student's needs.</p>
+          </div>
+          <div class="about__cards" id="aboutFeatures"><!-- rendered by JS --></div>
+        </div>
+      </div>
 
-      <input type="text" id="searchInput" placeholder="Search Tutor..." />
+      <div class="container section">
+        <div class="stats stats--plain" id="aboutStats">
+          <div class="stat-card"><span class="stat-card__icon" aria-hidden="true">👩‍🏫</span><span class="stat-card__num">12+</span><span class="stat-card__label">Expert Tutors</span></div>
+          <div class="stat-card"><span class="stat-card__icon" aria-hidden="true">🎓</span><span class="stat-card__num">100 000+</span><span class="stat-card__label">Students Helped</span></div>
+          <div class="stat-card"><span class="stat-card__icon" aria-hidden="true">✅</span><span class="stat-card__num">95%</span><span class="stat-card__label">Pass Rate</span></div>
+        </div>
+      </div>
 
-      <div id="tutorContainer"></div>
+      <div class="container section">
+        <div class="cta-band">
+          <h2>Want to learn with us?</h2>
+          <p>Browse our tutors and find the perfect match for your subject and level.</p>
+          <button class="btn btn--light btn--lg" data-page="tutors">Find a Tutor</button>
+        </div>
+      </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact Us</h2>
-
-      <form id="contactForm">
-        <input type="text" id="name" placeholder="Your Name..." />
-
-        <input type="email" id="email" placeholder="Email Address..." />
-
-        <textarea id="message" placeholder="Message..."></textarea>
-
-        <button type="submit">Send Message</button>
-      </form>
-
-      <p id="feedback"></p>
+    <!-- ===================== SERVICES ===================== -->
+    <section class="page" id="page-services">
+      <div class="band-soft">
+        <div class="container section">
+          <div class="section__head center">
+            <span class="eyebrow">What we offer</span>
+            <h1 class="section__title section__title--xl">Our Services</h1>
+            <p class="section__sub">Expert tutoring across core subjects — from school to university level.</p>
+          </div>
+          <div class="services" id="servicesGrid"><!-- rendered by JS --></div>
+        </div>
+      </div>
+      <div class="container section">
+        <div class="cta-band">
+          <h2>Not sure which subject to start with?</h2>
+          <p>Send us a message and we'll help you find the right tutor for your goals.</p>
+          <button class="btn btn--light btn--lg" data-page="contact">Contact Us</button>
+        </div>
+      </div>
     </section>
 
-    <footer>
-      <p>© 2026 TutorConnect</p>
-    </footer>
+    <!-- ===================== SUBJECT (dynamic, one per subject) ===================== -->
+    <section class="page" id="page-subject">
+      <div class="band-soft">
+        <div class="container section">
+          <button class="back-link" data-page="services">← All services</button>
+          <div class="subject-hero center">
+            <span class="subject-hero__icon" id="subjectIcon" aria-hidden="true">📚</span>
+            <span class="eyebrow">Subject</span>
+            <h1 class="section__title section__title--xl" id="subjectTitle">Subject</h1>
+            <p class="section__sub" id="subjectTagline"></p>
+          </div>
+        </div>
+      </div>
 
-    <script src="js/script.js"></script>
-  </body>
+      <div class="container section">
+        <div class="subject-about card">
+          <h2>What we cover</h2>
+          <p id="subjectAbout"></p>
+          <ul class="topics" id="subjectTopics"></ul>
+        </div>
+      </div>
+
+      <div class="container section">
+        <h2 class="section__title center">Tutors for <span id="subjectTitle2"></span></h2>
+        <p class="tutor-count" id="subjectTutorCount" aria-live="polite"></p>
+        <div class="tutors" id="subjectTutors"></div>
+        <div class="center" style="margin-top:28px">
+          <button class="btn btn--ghost" data-page="tutors">Browse all tutors</button>
+        </div>
+      </div>
+
+      <div class="container section">
+        <div class="cta-band">
+          <h2>Ready to start with <span id="subjectTitle3"></span>?</h2>
+          <p>Book a session or message us and we'll match you with the right tutor.</p>
+          <button class="btn btn--light btn--lg" data-page="contact">Get in Touch</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TUTORS ===================== -->
+    <section class="page" id="page-tutors">
+      <div class="container section">
+        <div class="section__head center">
+          <span class="eyebrow">Our team</span>
+          <h1 class="section__title section__title--xl">Find a Tutor</h1>
+          <p class="section__sub">Browse our qualified tutors by name or subject and get started today.</p>
+        </div>
+
+        <!-- search -->
+        <div class="tutor-search">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+          <input type="search" id="tutorSearch" placeholder="Search by name or subject…" aria-label="Search tutors by name or subject" />
+        </div>
+
+        <!-- subject filter pills -->
+        <div class="pills" id="subjectPills"><!-- rendered by JS --></div>
+
+        <p class="tutor-count" id="tutorCount" aria-live="polite"></p>
+        <div class="tutors" id="tutorGrid"><!-- rendered by JS --></div>
+        <p class="empty-msg" id="tutorEmpty" hidden>No tutors match your search. Try a different name or subject.</p>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section class="page" id="page-contact">
+      <div class="band-soft">
+        <div class="container section contact">
+          <div class="contact__intro">
+            <span class="eyebrow">Get in touch</span>
+            <h1 class="section__title section__title--xl">Contact Us</h1>
+            <p>Have a question or want to find the right tutor for your needs? Send us a message and we'll get back to you within 24 hours.</p>
+            <ul class="contact__list">
+              <li><span class="contact__ico" aria-hidden="true">✉️</span><span><strong>Email</strong>hello@tutorconnect.co.za</span></li>
+              <li><span class="contact__ico" aria-hidden="true">📞</span><span><strong>Phone</strong>+27 21 000 0000</span></li>
+              <li><span class="contact__ico" aria-hidden="true">🕘</span><span><strong>Hours</strong>Mon–Fri, 8am–6pm SAST</span></li>
+            </ul>
+          </div>
+
+          <form class="contact__form card" id="contactForm" novalidate>
+            <div class="field">
+              <label for="cName">Your Name</label>
+              <input id="cName" name="name" type="text" placeholder="Thabo Mokoena" required />
+              <span class="field__error" data-for="cName"></span>
+            </div>
+            <div class="field">
+              <label for="cEmail">Email Address</label>
+              <input id="cEmail" name="email" type="email" placeholder="you@email.com" required />
+              <span class="field__error" data-for="cEmail"></span>
+            </div>
+            <div class="field">
+              <label for="cMsg">Message</label>
+              <textarea id="cMsg" name="message" rows="5" placeholder="Tell us what you need help with…" required></textarea>
+              <span class="field__error" data-for="cMsg"></span>
+            </div>
+            <button type="submit" class="btn btn--primary btn--block btn--lg">Send Message</button>
+            <p class="form__success" id="contactSuccess" hidden>✓ Thanks! Your message has been sent — we'll reply within 24 hours.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SUBJECT DETAIL (dynamic) ===================== -->
+    <section class="page" id="page-subject">
+      <div id="subjectContent"><!-- rendered by JS --></div>
+    </section>
+
+    <!-- ===================== TERMS ===================== -->
+    <section class="page" id="page-terms">
+      <div class="container section legal">
+        <button class="back-link" data-page="home">← Back to home</button>
+        <span class="eyebrow">Legal</span>
+        <h1 class="section__title section__title--xl">Terms of Service</h1>
+        <p class="legal__updated">Last updated: 1 January 2025</p>
+        <h2>1. Using TutorConnect</h2>
+        <p>TutorConnect connects students with independent tutors for academic support. By creating an account you confirm that the information you provide is accurate and that you are old enough, or have guardian permission, to use the service.</p>
+        <h2>2. Booking sessions</h2>
+        <p>When you book a session you agree to attend at the scheduled time. Tutors set their own availability and rates, which are shown before you confirm. Cancellations made at least 24 hours in advance are eligible for rescheduling.</p>
+        <h2>3. Conduct</h2>
+        <p>We expect respectful, honest communication between students and tutors. Harassment, abuse, or attempts to arrange payment outside the platform may result in account suspension.</p>
+        <h2>4. Payments &amp; refunds</h2>
+        <p>Session fees are processed securely. If a tutor fails to attend a confirmed session, you are entitled to a full refund or a free rebooking.</p>
+        <h2>5. Changes</h2>
+        <p>We may update these terms from time to time. Significant changes will be communicated by email or an in-app notice. This is a student project demonstration and not a binding legal agreement.</p>
+      </div>
+    </section>
+
+    <!-- ===================== PRIVACY ===================== -->
+    <section class="page" id="page-privacy">
+      <div class="container section legal">
+        <button class="back-link" data-page="home">← Back to home</button>
+        <span class="eyebrow">Legal</span>
+        <h1 class="section__title section__title--xl">Privacy Policy</h1>
+        <p class="legal__updated">Last updated: 1 January 2025</p>
+        <h2>What we collect</h2>
+        <p>We collect the details you give us — your name, email address, and the subjects you're interested in — so we can match you with suitable tutors and contact you about your sessions.</p>
+        <h2>How we use it</h2>
+        <p>Your information is used to operate the platform: creating your account, processing bookings, and improving the service. We never sell your personal data to third parties.</p>
+        <h2>Cookies</h2>
+        <p>We use a small amount of local storage to remember your theme preference (light or dark) and keep you signed in during your visit. You can clear this at any time in your browser settings.</p>
+        <h2>Your choices</h2>
+        <p>You can request a copy of your data or ask us to delete your account by emailing hello@tutorconnect.co.za. This is a student project demonstration; no real personal data is stored on a server.</p>
+      </div>
+    </section>
+
+    <!-- ===================== SIGN IN ===================== -->
+    <section class="page" id="page-signin">
+      <div class="container section auth-wrap">
+        <div class="auth-card card">
+          <div class="auth-card__head">
+            <span class="brand__cap" aria-hidden="true">🎓</span>
+            <h1 id="authTitle">Welcome back</h1>
+            <p id="authSub">Sign in to your TutorConnect account.</p>
+          </div>
+
+          <div class="auth-tabs" id="authTabs">
+            <button class="auth-tab auth-tab--active" data-auth="signin">Sign In</button>
+            <button class="auth-tab" data-auth="create">Create Account</button>
+          </div>
+
+          <form id="authForm" novalidate>
+            <div class="field">
+              <label for="authUser">Username</label>
+              <input id="authUser" type="text" placeholder="Enter any username" autocomplete="username" />
+            </div>
+            <div class="field">
+              <label for="authPass">Password</label>
+              <div class="field__pass">
+                <input id="authPass" type="password" placeholder="Enter any password" autocomplete="current-password" />
+                <button type="button" class="field__eye" id="togglePass" aria-label="Show password">
+                  <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--primary btn--block btn--lg" id="authSubmit">Sign In</button>
+            <p class="auth-msg" id="authMsg" hidden></p>
+          </form>
+
+          <p class="auth-note">Demo mode — any username and password will sign you in.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== TERMS ===================== -->
+    <section class="page" id="page-terms">
+      <div class="container section legal">
+        <span class="eyebrow">Legal</span>
+        <h1 class="section__title section__title--xl">Terms of Service</h1>
+        <p class="legal__date">Last updated: 1 January 2025</p>
+        <h2>1. Using TutorConnect</h2>
+        <p>By creating an account or booking a session you agree to use TutorConnect for lawful, educational purposes. You are responsible for keeping your login details secure and for the activity on your account.</p>
+        <h2>2. Bookings &amp; sessions</h2>
+        <p>Sessions are arranged between students and independent tutors. Tutors set their own availability. We ask that cancellations are made at least 24 hours before a scheduled session so the slot can be offered to another student.</p>
+        <h2>3. Conduct</h2>
+        <p>We are committed to a safe, supportive learning environment. Harassment, abusive language, or sharing of inappropriate content may result in suspension of your account.</p>
+        <h2>4. Payments</h2>
+        <p>Where payments apply, fees are shown clearly before you confirm a booking. This demo project does not process real payments.</p>
+        <h2>5. Changes</h2>
+        <p>We may update these terms from time to time. Continued use of the platform after changes means you accept the updated terms.</p>
+        <button class="btn btn--ghost" data-page="home" style="margin-top:20px">← Back to home</button>
+      </div>
+    </section>
+
+    <!-- ===================== PRIVACY ===================== -->
+    <section class="page" id="page-privacy">
+      <div class="container section legal">
+        <span class="eyebrow">Legal</span>
+        <h1 class="section__title section__title--xl">Privacy Policy</h1>
+        <p class="legal__date">Last updated: 1 January 2025</p>
+        <h2>What we collect</h2>
+        <p>To match you with tutors we may collect your name, email address, the subjects you're interested in, and your messages to us. We only collect what we need to provide the service.</p>
+        <h2>How we use it</h2>
+        <p>Your information is used to create your account, arrange sessions, respond to enquiries, and improve TutorConnect. We do not sell your personal information to third parties.</p>
+        <h2>Your choices</h2>
+        <p>You can request a copy of your data or ask us to delete your account at any time by contacting <strong>hello@tutorconnect.co.za</strong>.</p>
+        <h2>Cookies</h2>
+        <p>We use local browser storage to remember small preferences such as your light or dark theme. No tracking cookies are used in this project.</p>
+        <button class="btn btn--ghost" data-page="home" style="margin-top:20px">← Back to home</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer" id="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#home" class="brand" data-page="home"><span class="brand__cap" aria-hidden="true">🎓</span><span class="brand__name">TutorConnect</span></a>
+        <p>Connecting students with qualified tutors for personalised academic support across South Africa.</p>
+        <div class="footer__social">
+          <button aria-label="Instagram" data-social="Instagram">⌾</button>
+          <button aria-label="Facebook" data-social="Facebook">f</button>
+          <button aria-label="X" data-social="X">𝕏</button>
+          <button aria-label="YouTube" data-social="YouTube">▷</button>
+        </div>
+      </div>
+
+      <nav class="footer__col" aria-label="Explore">
+        <span class="footer__head">Explore</span>
+        <button class="footer__link" data-page="home">Home</button>
+        <button class="footer__link" data-page="about">About</button>
+        <button class="footer__link" data-page="services">Services</button>
+        <button class="footer__link" data-page="tutors">Tutors</button>
+        <button class="footer__link" data-page="contact">Contact</button>
+      </nav>
+
+      <nav class="footer__col" aria-label="Subjects">
+        <span class="footer__head">Subjects</span>
+        <button class="footer__link" data-open-subject="Mathematics">Mathematics</button>
+        <button class="footer__link" data-open-subject="Science">Science</button>
+        <button class="footer__link" data-open-subject="Programming">Programming</button>
+        <button class="footer__link" data-open-subject="Languages">Languages</button>
+        <button class="footer__link" data-open-subject="Exam Preparation">Exam Prep</button>
+        <button class="footer__link" data-open-subject="Art &amp; Design">Art &amp; Design</button>
+      </nav>
+
+      <nav class="footer__col" aria-label="Account">
+        <span class="footer__head">Account</span>
+        <button class="footer__link" data-page="signin">Sign In</button>
+        <button class="footer__link" data-page="signin" data-authmode="create">Create Account</button>
+        <button class="footer__link" data-page="contact">Help &amp; Support</button>
+        <button class="footer__link" data-page="terms">Terms of Service</button>
+        <button class="footer__link" data-page="privacy">Privacy Policy</button>
+      </nav>
+    </div>
+    <div class="container footer__bottom">
+      <span>©️ 2025 TutorConnect. All rights reserved.</span>
+      <span>Startup Launch Challenge — Student Tutoring Platform</span>
+    </div>
+  </footer>
+
+  <!-- toast -->
+  <div class="toast" id="toast" hidden></div>
+
+  <script src="script.js"></script>
+</body>
 </html>
