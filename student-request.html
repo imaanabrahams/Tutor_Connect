@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TutorConnect - Find a Tutor</title>
+    <link rel="stylesheet" href="./global-form.css" />
+  </head>
+  <body>
+    <main class="form-wrapper real-web-layout">
+      <div class="form-wizard-nav">
+        <div class="wizard-step active" id="step1-badge">
+          <span>1</span> Personal Details
+        </div>
+        <div class="wizard-step" id="step2-badge">
+          <span>2</span> Academic Goals
+        </div>
+        <div class="wizard-step" id="step3-badge">
+          <span>3</span> Live Scheduling
+        </div>
+      </div>
+
+      <form id="studentBookingForm" novalidate>
+        <fieldset class="form-step step-visible" id="studentStep1">
+          <div class="form-step-header">
+            <span class="section-badge">Get Started</span>
+            <h2>Tell us about yourself</h2>
+            <p>
+              Please enter your standard details so we can manage your account
+              communications.
+            </p>
+          </div>
+
+          <div class="input-container">
+            <label for="studentName">Full Name</label>
+            <input
+              type="text"
+              id="studentName"
+              name="fullName"
+              required
+              placeholder="e.g., Thabo Doe"
+            />
+          </div>
+
+          <div class="input-container">
+            <label for="studentEmail">Email Address</label>
+            <input
+              type="email"
+              id="studentEmail"
+              name="email"
+              required
+              placeholder="you@email.com"
+            />
+          </div>
+
+          <div class="input-container">
+            <label for="studentPhone">Phone Number</label>
+            <input
+              type="text"
+              id="studentPhone"
+              name="phoneNumber"
+              required
+              placeholder="e.g., +27 21 000 0000"
+            />
+          </div>
+
+          <div class="navigation-controls">
+            <button type="button" class="btn btn-next" data-next="studentStep2">
+              Continue to Academic Goals
+            </button>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-step" id="studentStep2">
+          <div class="form-step-header">
+            <span class="section-badge">What We Offer</span>
+            <h2>Select your educational needs</h2>
+            <p>
+              Choose the target academic service tier and define your student
+              level status.
+            </p>
+          </div>
+
+          <div class="input-container">
+            <label for="studentGrade">Current Academic Grade Level</label>
+            <select id="studentGrade" name="gradeLevel" required>
+              <option value="" disabled selected>
+                Choose your current level...
+              </option>
+              <option value="primary">Primary School (Grades 1-7)</option>
+              <option value="high">High School (Grades 8-12)</option>
+            </select>
+          </div>
+
+          <div class="input-container card-selection-group">
+            <label class="grid-field-label"
+              >Select Your Target Service Program</label
+            >
+            <div class="services-3col-grid">
+              <input
+                type="radio"
+                id="srvMath"
+                name="requestedSubject"
+                value="mathematics"
+                checked
+                required
+              />
+              <label for="srvMath" class="srv-card-item">
+                <div class="srv-icon-box bg-green">📚</div>
+                <strong>Mathematics</strong>
+                <span
+                  >Grade 8 to 12 - algebra,geometry,calculus and
+                  statistics.</span
+                >
+              </label>
+
+              <input
+                type="radio"
+                id="srvScience"
+                name="requestedSubject"
+                value="science"
+              />
+              <label for="srvScience" class="srv-card-item">
+                <div class="srv-icon-box bg-teal">🧪</div>
+                <strong>Science</strong>
+                <span>Physics & Chemistry with hands-on concept mastery.</span>
+              </label>
+
+              <input
+                type="radio"
+                id="srvProg"
+                name="requestedSubject"
+                value="programming"
+              />
+              <label for="srvProg" class="srv-card-item">
+                <div class="srv-icon-box bg-dark">💻</div>
+                <strong>Programming</strong>
+                <span
+                  >HTML, CSS, JavaScript — fundamentals to real projects.</span
+                >
+              </label>
+
+              <input
+                type="radio"
+                id="srvLang"
+                name="requestedSubject"
+                value="languages"
+              />
+              <label for="srvLang" class="srv-card-item">
+                <div class="srv-icon-box bg-blue">📖</div>
+                <strong>Languages</strong>
+                <span>English & Afrikaans — reading, writing, grammar.</span>
+              </label>
+
+              <input
+                type="radio"
+                id="srvExam"
+                name="requestedSubject"
+                value="exam_prep"
+              />
+              <label for="srvExam" class="srv-card-item">
+                <div class="srv-icon-box bg-yellow">📄</div>
+                <strong>Exam Preparation</strong>
+                <span
+                  >Structured revision, past papers, score maximisation.</span
+                >
+              </label>
+
+              <input
+                type="radio"
+                id="srvArt"
+                name="requestedSubject"
+                value="art_design"
+              />
+              <label for="srvArt" class="srv-card-item">
+                <div class="srv-icon-box bg-orange">🎨</div>
+                <strong>Art & Design</strong>
+                <span>Visual arts, design principles, techniques.</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="navigation-controls">
+            <button type="button" class="btn btn-back" data-prev="studentStep1">
+              Back
+            </button>
+            <button type="button" class="btn btn-next" data-next="studentStep3">
+              Set Booking Schedule
+            </button>
+          </div>
+        </fieldset>
+
+        <fieldset class="form-step" id="studentStep3">
+          <div class="form-step-header">
+            <span class="section-badge">Availability Matching</span>
+            <h2>Select Appointment Window</h2>
+            <p>
+              Hold an exact calendar block slot directly matching open tutor
+              windows.
+            </p>
+          </div>
+
+          <div class="nested-live-booking-module">
+            <div class="input-container">
+              <label for="bookingReservationDate">1. Choose Date</label>
+              <input
+                type="date"
+                id="bookingReservationDate"
+                name="selectedDate"
+                required
+              />
+            </div>
+
+            <div class="live-time-slices">
+              <label>2. Choose Start Time</label>
+              <div class="time-radio-buttons">
+                <input
+                  type="radio"
+                  id="slot1"
+                  name="selectedTimeSlot"
+                  value="09:00"
+                  required
+                />
+                <label for="slot1">09:00 AM</label>
+
+                <input
+                  type="radio"
+                  id="slot2"
+                  name="selectedTimeSlot"
+                  value="11:30"
+                />
+                <label for="slot2">11:30 AM</label>
+
+                <input
+                  type="radio"
+                  id="slot3"
+                  name="selectedTimeSlot"
+                  value="14:00"
+                />
+                <label for="slot3">02:00 PM</label>
+
+                <input
+                  type="radio"
+                  id="slot4"
+                  name="selectedTimeSlot"
+                  value="16:30"
+                />
+                <label for="slot4">04:30 PM</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="navigation-controls">
+            <button type="button" class="btn btn-back" data-prev="studentStep2">
+              Back
+            </button>
+            <button type="submit" class="btn btn-submit">
+              Find My Perfect Tutor
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </main>
+
+    <script src="student-request.js"></script>
+  </body>
+</html>

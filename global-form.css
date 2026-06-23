@@ -1,0 +1,314 @@
+:root {
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --error: #ef4444;
+  --error-bg: #fef2f2;
+}
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  padding: 3rem 1rem;
+
+  .form-wrapper.real-web-layout {
+    background: var(--card);
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow:
+      0 10px 25px -5px rgba(0, 0, 0, 0.02),
+      0 8px 10px -6px rgba(0, 0, 0, 0.02);
+  }
+
+  .form-step-header {
+    margin-bottom: 2rem;
+  }
+
+  .form-step-header h2 {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-badge {
+    display: block;
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .form-wizard-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+  }
+
+  .wizard-step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .wizard-step span {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--border);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+  }
+
+  .wizard-step.active {
+    color: var(--primary);
+  }
+
+  .wizard-step.active span {
+    background: var(--primary);
+    color: #ffffff;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.75rem;
+  }
+
+  .input-container label,
+  .grid-field-label {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+
+  .input-container input[type="text"],
+  .input-container input[type="email"],
+  .input-container select {
+    height: 48px;
+    padding: 0 1rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .input-container input:focus,
+  .input-container select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  }
+
+  .btn {
+    height: 48px;
+    padding: 0 2rem;
+    border-radius: 9999px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-next,
+  .btn-submit {
+    background-color: var(--primary);
+    color: #ffffff;
+    margin-left: auto;
+  }
+
+  .btn-next:hover,
+  .btn-submit:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+  }
+
+  .btn-back {
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+  }
+
+  .btn-back:hover {
+    background-color: #f1f5f9;
+    color: var(--text);
+  }
+
+  .services-3col-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  .services-3col-grid input[type="radio"] {
+    display: none;
+  }
+
+  .srv-card-item {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 16px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
+  }
+
+  .srv-icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .bg-green {
+    background-color: #f0fdf4;
+  }
+  .bg-teal {
+    background-color: #f0fdfa;
+  }
+  .bg-dark {
+    background-color: #f8fafc;
+    border: 1px solid var(--border);
+  }
+  .bg-blue {
+    background-color: #eff6ff;
+  }
+  .bg-yellow {
+    background-color: #fefce8;
+  }
+  .bg-orange {
+    background-color: #fff7ed;
+  }
+
+  .srv-card-item strong {
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .srv-card-item span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .srv-card-item:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+  }
+
+  .services-3col-grid input[type="radio"]:checked + .srv-card-item {
+    border-color: var(--primary);
+    box-shadow:
+      0 0 0 1px var(--primary),
+      0 4px 12px rgba(37, 99, 235, 0.05);
+  }
+
+  .form-step {
+    display: none;
+    border: none;
+  }
+  .form-step.step-visible {
+    display: block;
+  }
+
+  .nested-live-booking-module {
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+  }
+  .time-radio-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+  .time-radio-buttons input {
+    display: none;
+  }
+  .time-radio-buttons label {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    padding: 0.75rem 0.25rem;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .time-radio-buttons input:checked + label {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  .error-message-text {
+    color: var(--error);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.4rem;
+    display: none;
+  }
+  .field-invalid input,
+  .field-invalid select {
+    border-color: var(--error) !important;
+    background: var(--error-bg);
+  }
+  .field-invalid .error-message-text {
+    display: block;
+  }
+
+  @media (max-width: 760px) {
+    .services-3col-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .time-radio-buttons {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 480px) {
+    .services-3col-grid {
+      grid-template-columns: 1fr;
+    }
+    .form-wizard-nav {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+}

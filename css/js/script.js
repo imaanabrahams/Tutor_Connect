@@ -115,7 +115,7 @@
         <p class="tutor__bio">${t.bio}</p>
         <div class="tutor__foot">
           <span class="tutor__rating"><span class="star">★</span> ${t.rating.toFixed(1)} <span class="reviews">(${t.reviews} reviews)</span></span>
-          <button class="tutor__book" data-book="${t.name}">Book Session →</button>
+          <button class="tutor__book" data-book="${encodeURIComponent(t.name)}">Book Session →</button>
         </div>
       </article>`;
   }
@@ -284,8 +284,11 @@
     const social = e.target.closest("[data-social]");
     if (social) { toast("Follow us on " + social.dataset.social + " (demo link)."); return; }
 
-    const book = e.target.closest("[data-book]");
-    if (book) { toast("Session request sent to " + book.dataset.book + " — they'll be in touch!"); return; }
+    const book = e.target.closest("[data-book]")
+    if (book) {
+      window.location.href = ".html?tutor=" + book.dataset.book;
+      return;
+    }
 
     const pill = e.target.closest(".pill[data-subject]");
     if (pill) { activeSubject = pill.dataset.subject; renderSubjectPills(); renderTutors(); return; }
