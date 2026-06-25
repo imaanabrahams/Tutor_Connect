@@ -1,7 +1,5 @@
 /* ============================================================
    TutorConnect — Interactions
-   Concepts: variables, objects, arrays, functions, conditionals,
-   DOM manipulation, event handling, form validation, user feedback.
    ============================================================ */
 (function () {
   "use strict";
@@ -14,7 +12,6 @@
     { icon: "🌐", title: "Flexible Online",    text: "Learn from anywhere, at your own pace." }
   ];
 
-  // Each subject is a full page: short card text + tagline, about, topics list.
   const SERVICES = [
     { icon: "📚", title: "Mathematics",
       text: "Grade 8 to University level. Algebra, calculus, statistics, and more.",
@@ -65,18 +62,18 @@
 
   const SUBJECTS = ["All", "Mathematics", "Science", "Programming", "Languages", "Exam Preparation", "Art & Design"];
   const TUTOR_EXTRAS = [
-    { rate: 320, available: true,  next: "Today 17:00",     match: 97, tags: ["Fast reply", "Study plan"] },
-    { rate: 280, available: true,  next: "Tue 18:30",       match: 94, tags: ["Lab support", "Exam drills"] },
-    { rate: 350, available: true,  next: "Wed 16:00",       match: 96, tags: ["Projects", "Code review"] },
-    { rate: 260, available: false, next: "Next week",       match: 88, tags: ["Writing", "Orals"] },
-    { rate: 300, available: true,  next: "Thu 19:00",       match: 95, tags: ["Past papers", "Calm strategy"] },
-    { rate: 240, available: true,  next: "Sat 10:00",       match: 90, tags: ["Portfolio", "Creative critique"] },
-    { rate: 250, available: true,  next: "Today 15:30",     match: 92, tags: ["Foundations", "Homework"] },
-    { rate: 290, available: false, next: "Next week",       match: 87, tags: ["Chemistry", "Biology"] },
-    { rate: 330, available: true,  next: "Fri 17:30",       match: 95, tags: ["Python", "Web apps"] },
-    { rate: 230, available: true,  next: "Thu 16:00",       match: 86, tags: ["Literature", "Essays"] },
-    { rate: 360, available: true,  next: "Mon 18:00",       match: 93, tags: ["University", "Calculus"] },
-    { rate: 310, available: true,  next: "Tue 17:00",       match: 94, tags: ["NSC", "IEB"] }
+    { rate: 320, available: true,  next: "Today 17:00",  match: 97, tags: ["Fast reply", "Study plan"] },
+    { rate: 280, available: true,  next: "Tue 18:30",    match: 94, tags: ["Lab support", "Exam drills"] },
+    { rate: 350, available: true,  next: "Wed 16:00",    match: 96, tags: ["Projects", "Code review"] },
+    { rate: 260, available: false, next: "Next week",    match: 88, tags: ["Writing", "Orals"] },
+    { rate: 300, available: true,  next: "Thu 19:00",    match: 95, tags: ["Past papers", "Calm strategy"] },
+    { rate: 240, available: true,  next: "Sat 10:00",    match: 90, tags: ["Portfolio", "Creative critique"] },
+    { rate: 250, available: true,  next: "Today 15:30",  match: 92, tags: ["Foundations", "Homework"] },
+    { rate: 290, available: false, next: "Next week",    match: 87, tags: ["Chemistry", "Biology"] },
+    { rate: 330, available: true,  next: "Fri 17:30",    match: 95, tags: ["Python", "Web apps"] },
+    { rate: 230, available: true,  next: "Thu 16:00",    match: 86, tags: ["Literature", "Essays"] },
+    { rate: 360, available: true,  next: "Mon 18:00",    match: 93, tags: ["University", "Calculus"] },
+    { rate: 310, available: true,  next: "Tue 17:00",    match: 94, tags: ["NSC", "IEB"] }
   ];
   TUTORS.forEach((tutor, index) => Object.assign(tutor, TUTOR_EXTRAS[index] || TUTOR_EXTRAS[0]));
 
@@ -86,6 +83,28 @@
   const slug = (name) => name.toLowerCase().replace(/&/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   function initials(name) {
     return name.replace(/^(Dr|Mr|Mrs|Ms)\.?\s+/i, "").split(" ").map(w => w[0]).slice(0, 2).join("").toUpperCase();
+  }
+
+  /* ---------------- NAV STATE ---------------- */
+  let isLoggedIn = false;
+
+  function updateNav(page) {
+    const signinBtn  = $(".nav__signin");
+    const navAccount = $("#navAccount");
+
+    if (page === "signin") {
+      // On sign in page: hide both Sign In button and account info
+      signinBtn.hidden  = true;
+      navAccount.hidden = true;
+    } else if (isLoggedIn) {
+      // Logged in: hide Sign In button, show account info
+      signinBtn.hidden  = true;
+      navAccount.hidden = false;
+    } else {
+      // Logged out: show Sign In button, hide account info
+      signinBtn.hidden  = false;
+      navAccount.hidden = true;
+    }
   }
 
   /* ---------------- RENDERING ---------------- */
@@ -208,7 +227,6 @@
     $("#subjectTagline").textContent = s.tagline;
     $("#subjectAbout").textContent = s.about;
     $("#subjectTopics").innerHTML = s.topics.map(t => `<li>${t}</li>`).join("");
-
     const tutors = TUTORS.filter(t => t.subject === subjectName);
     $("#subjectTutors").innerHTML = tutors.map(tutorCard).join("");
     $("#subjectTutorCount").textContent = tutors.length
@@ -218,7 +236,7 @@
   }
 
   /* ---------------- ROUTING ---------------- */
-  const PAGES = ["home", "about", "services", "tutors", "contact", "signin", "terms", "privacy", "subject"];
+  const PAGES = ["home", "about", "services", "tutors", "contact", "signin", "terms", "privacy", "subject", "testimonials", "thankyou"];
 
   function setActive(id) {
     $$(".page").forEach(p => p.classList.remove("page--active"));
@@ -232,7 +250,6 @@
     if (PAGES.indexOf(name) === -1) name = "home";
     setActive(name);
 
-    // nav highlight (subject pages highlight Services)
     const navName = name === "subject" ? "services" : name;
     $$(".nav__link").forEach(l => l.classList.toggle("is-active", l.dataset.page === navName));
 
@@ -243,6 +260,7 @@
     }
     if (name === "signin") setAuthMode(opts.authmode || "signin");
 
+    updateNav(name);
     closeMobile();
     try { history.replaceState(null, "", "#" + name); } catch (e) {}
   }
@@ -251,6 +269,7 @@
     if (!renderSubjectPage(subjectName)) return;
     setActive("subject");
     $$(".nav__link").forEach(l => l.classList.toggle("is-active", l.dataset.page === "services"));
+    updateNav("subject");
     closeMobile();
     try { history.replaceState(null, "", "#subject-" + slug(subjectName)); } catch (e) {}
   }
@@ -325,11 +344,15 @@
     }, 2600);
   }
 
-  /* ---------------- CLICK DELEGATION ---------------- */
+ /* ---------------- CLICK DELEGATION ---------------- */
   document.addEventListener("click", function (e) {
     const pageBtn = e.target.closest("[data-page]");
     if (pageBtn) {
       e.preventDefault();
+      // Hide Sign In button when it is clicked
+      if (pageBtn.dataset.page === "signin") {
+        $(".nav__signin").hidden = true;
+      }
       showPage(pageBtn.dataset.page, { filter: pageBtn.dataset.filter, authmode: pageBtn.dataset.authmode });
       return;
     }
@@ -340,13 +363,15 @@
     if (social) { toast("Follow us on " + social.dataset.social + " (demo link)."); return; }
 
     const book = e.target.closest("[data-book]");
-    if (book) { toast("Session request sent to " + book.dataset.book + " — they'll be in touch!"); return; }
+    if (book) {
+      toast("Session booked with " + book.dataset.book + "! Enjoy your session.");
+      return;
+    }
 
     const pill = e.target.closest(".pill[data-subject]");
     if (pill) { activeSubject = pill.dataset.subject; renderSubjectPills(); renderTutors(); return; }
   });
 
-  // keyboard access for service cards (Enter / Space)
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Enter" && e.key !== " ") return;
     const card = e.target.closest(".service[data-open-subject]");
@@ -379,21 +404,55 @@
     });
   }
 
-  /* ---------------- SIGN IN (accepts any login) ---------------- */
+  /* ---------------- REVIEW FORM ---------------- */
+  const reviewForm = $("#reviewForm");
+  if (reviewForm) {
+    reviewForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const name    = $("#reviewName").value.trim();
+      const subject = $("#reviewSubject").value.trim();
+      const text    = $("#reviewText").value.trim();
+      if (!name || !subject || !text) return;
+
+      const grid = $("#testimonialsGrid");
+      if (grid) {
+        const card = document.createElement("div");
+        card.className = "testimonial-card card";
+        card.innerHTML = `
+          <img src="https://i.pravatar.cc/80?img=${Math.floor(Math.random() * 70)}" alt="Student photo" class="testimonial-card__img" />
+          <p class="testimonial-card__text">"${text}"</p>
+          <strong class="testimonial-card__name">${name}</strong>
+          <span class="testimonial-card__subject">${subject}</span>`;
+        grid.appendChild(card);
+      }
+
+      const success = $("#reviewSuccess");
+      if (success) success.hidden = false;
+
+      // Show Log Out button only after review is submitted
+      const logoutBtn = $("#testimonialLogout");
+      if (logoutBtn) logoutBtn.hidden = false;
+
+      reviewForm.reset();
+    });
+  }
+
+  /* ---------------- SIGN IN / AUTH ---------------- */
   const authForm = $("#authForm");
   const authMsg  = $("#authMsg");
+
   function flashAuth(text, ok) {
     if (!authMsg) return;
     authMsg.textContent = text;
     authMsg.className = "auth-msg " + (ok ? "auth-msg--ok" : "auth-msg--error");
     authMsg.hidden = false;
   }
+
   function setSignedIn(username) {
+    isLoggedIn = true;
     $("#navHi").textContent = "Hi, " + username;
-    $("#navAvatar").textContent = (username[0] || "U").toUpperCase();
-    $(".nav__signin").hidden = true;
-    $("#navAccount").hidden = false;
   }
+
   function setAuthMode(mode) {
     const isCreate = mode === "create";
     $$(".auth-tab").forEach(t => t.classList.toggle("auth-tab--active", t.dataset.auth === mode));
@@ -402,6 +461,7 @@
     $("#authSubmit").textContent = isCreate ? "Create Account" : "Sign In";
     if (authMsg) authMsg.hidden = true;
   }
+
   $$(".auth-tab").forEach(tab => tab.addEventListener("click", () => setAuthMode(tab.dataset.auth)));
 
   const togglePass = $("#togglePass");
@@ -417,17 +477,20 @@
       if (!user || !pass) { flashAuth("Enter any username and password to continue.", false); return; }
       flashAuth("✓ Success! Signing you in…", true);
       setSignedIn(user);
-      setTimeout(function () { if (authMsg) authMsg.hidden = true; authForm.reset(); showPage("home"); }, 600);
+      // After sign in → go to Find a Tutor page
+      setTimeout(function () {
+        if (authMsg) authMsg.hidden = true;
+        authForm.reset();
+        showPage("tutors");
+      }, 600);
     });
   }
 
+  // Nav "Log out" → go to Testimonials page
   const signout = $("#navSignout");
   if (signout) signout.addEventListener("click", function () {
-    $("#navAccount").hidden = true;
-    $(".nav__signin").hidden = false;
-    setAuthMode("signin");
-    showPage("signin");
-    toast("You've been signed out.");
+    isLoggedIn = false;
+    showPage("testimonials");
   });
 
   /* ---------------- BOOT ---------------- */
@@ -437,6 +500,7 @@
   renderServices("#servicesGrid");
   renderSubjectPills();
   renderTutors();
+  initQuickMatch();
 
   const hash = (location.hash || "").replace("#", "");
   if (hash.indexOf("subject-") === 0) {
